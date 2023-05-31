@@ -48,16 +48,19 @@ resource "aws_instance" "app_and_web_server" {
   # User data script to configure the instance
   user_data = <<-EOF
     #!/bin/bash
-    # Install web server (Nginx)
-    sudo apt-get update
+    # Install web server 
+     sudo apt-get update
     sudo apt-get install -y nginx
 
-    # Deploy demo HTML file
-    echo "<html><body><h1>Welcome to My Demo Website!</h1></body></html>" | sudo tee /var/www/html/index.html
+ # Clone the GitHub repository
+    git clone <https://github.com/Soniyasneha/indexhtml> /tmp/repo
 
+    # Copy the HTML file to the web server root directory
+    sudo cp /tmp/repo/index.html /var/www/html/index.html
     # Restart Nginx
     sudo systemctl restart nginx
   EOF
+
 
   tags = {
     Name = "AppAndWebServerInstance"
