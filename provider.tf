@@ -104,7 +104,7 @@ resource "aws_instance" "web_server" {
   ami           = "ami-053b0d53c279acc90" # Replace with the appropriate AMI ID for your desired operating system and region
   instance_type = "t2.micro"              # Free tier instance type
 
-  key_name  = "soniyakeypair" # Replace with your key pair name
+  key_name  = "keypair" # Replace with your key pair name
   subnet_id = aws_subnet.public_subnet.id
   #security_group_id           = aws_security_group.example_sg.id
   associate_public_ip_address = true
