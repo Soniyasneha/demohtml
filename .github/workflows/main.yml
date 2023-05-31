@@ -1,11 +1,11 @@
-name: Provision t3.micro EC2
+name: Provision t2.micro EC2
 on:
   workflow_dispatch:
     inputs:
       ec2_name:
         description: EC2 name
         required: true
-        default: 'DevOps'
+        default: 'ExampleAppServerInstance'
         type: string
 jobs:
   provision-ec2:
