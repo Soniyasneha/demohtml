@@ -38,18 +38,34 @@ resource "aws_subnet" "public_subnet" {
 }
 
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-053b0d53c279acc90"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.public_subnet.id
+resource "aws_instance" "app_and_web_server" {
+  ami                         = "ami-053b0d53c279acc90"
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.public_subnet.id
+  key_name                    = "keypair"
+  associate_public_ip_address = true
+
+  # User data script to configure the instance
+  user_data = <<-EOF
+    #!/bin/bash
+    # Install web server (Nginx)
+    sudo apt-get update
+    sudo apt-get install -y nginx
+
+    # Deploy demo HTML file
+    echo "<html><body><h1>Welcome to My Demo Website!</h1></body></html>" | sudo tee /var/www/html/index.html
+
+    # Restart Nginx
+    sudo systemctl restart nginx
+  EOF
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "AppAndWebServerInstance"
   }
 }
 
 resource "aws_eip" "example_eip" {
-  instance = aws_instance.app_server.id
+  instance = aws_instance.app_and_web_server.id
   vpc      = true
 
   tags = {
@@ -100,33 +116,6 @@ resource "aws_security_group" "example_sg" {
   }
 }
 
-resource "aws_instance" "web_server" {
-  ami           = "ami-053b0d53c279acc90" # Replace with the appropriate AMI ID for your desired operating system and region
-  instance_type = "t2.micro"              # Free tier instance type
-
-  key_name  = "soniyakeypair" # Replace with your key pair name
-  subnet_id = aws_subnet.public_subnet.id
-  #security_group_id           = aws_security_group.example_sg.id
-  associate_public_ip_address = true
-  user_data = <<-EOF
-    #!/bin/bash
-    # Install web server 
-     sudo apt-get update
-    sudo apt-get install -y nginx
-
- # Clone the GitHub repository
-    git clone <https://github.com/Soniyasneha/indexhtml> /tmp/repo
-
-    # Copy the HTML file to the web server root directory
-    sudo cp /tmp/repo/index.html /var/www/html/index.html
-    # Restart Nginx
-    sudo systemctl restart nginx
-  EOF
-
-  tags = {
-    Name = "WebServerInstance"
-  }
-}
 
 
 
