@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "example_vpc" {
@@ -29,7 +29,7 @@ output "vpc_id" {
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.example_vpc.id
   cidr_block              = "10.0.2.0/24"
-  availability_zone       = "us-west-2a"
+  availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
   tags = {
@@ -39,7 +39,7 @@ resource "aws_subnet" "public_subnet" {
 
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-04e914639d0cca79a"
+  ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
 
@@ -101,7 +101,7 @@ resource "aws_security_group" "example_sg" {
 }
 
 resource "aws_instance" "web_server" {
-  ami           = "ami-04e914639d0cca79a" # Replace with the appropriate AMI ID for your desired operating system and region
+  ami           = "ami-053b0d53c279acc90" # Replace with the appropriate AMI ID for your desired operating system and region
   instance_type = "t2.micro"              # Free tier instance type
 
   key_name  = "soniyakeypair" # Replace with your key pair name
@@ -127,18 +127,7 @@ resource "aws_instance" "web_server" {
     Name = "WebServerInstance"
   }
 }
-data "template_file" "html_file" {
-  template = file("${path.module}/demo.html")
-}
 
-
-
-# User data script to configure the instance
-  user_data = data.template_file.html_file.rendered
-
-  tags = {
-    Name = "WebServerInstance"
-  }
 
 
 
