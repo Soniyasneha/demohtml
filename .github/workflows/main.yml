@@ -5,7 +5,7 @@ on:
       ec2_name:
         description: EC2 name
         required: true
-        default: 'Devops-techstack'
+        default: 'DevOps
         type: string
 jobs:
   provision-ec2:
