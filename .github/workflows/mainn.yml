@@ -35,7 +35,7 @@ jobs:
         env:
           TF_VAR_ec2_name: ${{ github.event.inputs.app_and_web_server }}
         run: |
-          cd teraform/
+          cd terraform/
           terraform init
           terraform validate
           terraform plan 
