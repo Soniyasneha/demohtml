@@ -1,5 +1,4 @@
-name: Provision t2.micro EC2
-
+name: Hello world
 on:
   workflow_dispatch:
     inputs:
