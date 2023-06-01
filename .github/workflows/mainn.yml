@@ -36,7 +36,7 @@ jobs:
         env:
           EC2_NAME: ${{ github.event.inputs.ec2_name }}
         run: |
-          cd provider.tf/
+          cd terraform/
           terraform init
           terraform validate
           terraform plan 
