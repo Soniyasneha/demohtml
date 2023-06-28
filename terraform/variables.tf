@@ -7,6 +7,7 @@ variable "vpc_cidr_block" {
 variable "vpc_id" {
   description = "ID of the VPC"
   type        = string
+  default     ="aws_vpc.example_vpc.id"
 }
 
 variable "subnet_cidr_block" {
