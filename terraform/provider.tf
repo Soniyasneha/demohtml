@@ -13,7 +13,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "s3_buckets" {
+module "bucket" {
   source = "./module/bucket"
   count  = length(var.bucket_names)
 
