@@ -137,3 +137,7 @@ variable "eip_name" {
   default     = "ExampleEIP"
 }
 
+variable "bucket_names" {
+  type    = list(string)
+  default = ["bucket1", "bucket2", "bucket3"]
+}
