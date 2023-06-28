@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "<your-bucket-name>"
+    bucket         = "terraform123"
     key            = "terraform.tfstate"
-    region         = "<your-aws-region>"
+    region         = "us-east-1"
     encrypt        = true
     acl            = "private"
   }
