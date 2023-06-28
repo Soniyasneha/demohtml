@@ -26,9 +26,6 @@ jobs:
         with:
           terraform_wrapper: false
       - name: Terraform Apply
-        id:   apply
-        env:
-          TF_VAR_ec2_name:  "${{ github.event.inputs.app_and_web_server }}"
         run: |
           cd terraform/
           terraform init
