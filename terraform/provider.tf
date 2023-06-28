@@ -13,31 +13,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_vpc" "example_vpc" {
-  cidr_block       = "10.0.2.0/24"
-  instance_tenancy = "default"
-
-  tags = {
-    Name = "ExampleVPC"
-  }
-}
-
-output "vpc_id" {
-  value = aws_vpc.example_vpc.id
-}
-
-resource "aws_subnet" "public_subnet" {
-  vpc_id                  = aws_vpc.example_vpc.id
-  cidr_block              = "10.0.2.0/24"
-  availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "Public Subnet"
-  }
-}
-
-
 resource "aws_instance" "app_and_web_server" {
   ami                         = "ami-053b0d53c279acc90"
   instance_type               = "t2.micro"
