@@ -13,8 +13,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "s3_bucket" {
-  source      = "./modules/s3_bucket"
-  bucket_name = var.bucket_names[0]
-}
+module "s3_buckets" {
+  source = "./modules/s3_bucket"
+  count  = length(var.bucket_names)
 
+  bucket_name = var.bucket_names[count.index]
+}
