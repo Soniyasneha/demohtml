@@ -35,11 +35,6 @@ variable "destination_cidr_block" {
   default     = "0.0.0.0/0"
 }
 
-variable "gateway_id" {
-  description = "ID of the internet gateway"
-  type        = string
-}
-
 variable "security_group_name" {
   description = "Name of the security group"
   type        = string
