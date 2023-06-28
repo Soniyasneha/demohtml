@@ -26,6 +26,7 @@ variable "subnet_availability_zone" {
 variable "route_table_id" {
   description = "ID of the route table"
   type        = string
+  default     ="aws_route_table.public_route_table.id"
 }
 
 variable "destination_cidr_block" {
