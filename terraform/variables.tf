@@ -116,6 +116,7 @@ variable "instance_type" {
 variable "subnet_id" {
   description = "ID of the subnet for the EC2 instance"
   type        = string
+  default     = "aws_subnet.public_subnet.id"
 }
 
 variable "key_name" {
