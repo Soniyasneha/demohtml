@@ -7,7 +7,7 @@ variable "vpc_cidr_block" {
 variable "vpc_id" {
   description = "ID of the VPC"
   type        = string
-  default     ="aws_vpc.example_vpc.id"
+  default     = "aws_vpc.example_vpc.id"
 }
 
 variable "subnet_cidr_block" {
@@ -26,7 +26,7 @@ variable "subnet_availability_zone" {
 variable "route_table_id" {
   description = "ID of the route table"
   type        = string
-  default     ="aws_route_table.public_route_table.id"
+  default     = "aws_route_table.public_route_table.id"
 }
 
 variable "destination_cidr_block" {
@@ -50,6 +50,7 @@ variable "security_group_description" {
 variable "security_group_vpc_id" {
   description = "ID of the VPC for the security group"
   type        = string
+  default     = "aws_vpc.example_vpc.id"
 }
 
 variable "security_group_ingress_from_port" {
