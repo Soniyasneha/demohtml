@@ -139,5 +139,5 @@ variable "eip_name" {
 
 variable "bucket_names" {
   type    = list(string)
-  default = ["bucket1", "bucket2", "bucket3"]
+  default = ["tearrform1a", "terraform2a", "terraform3a"]
 }
