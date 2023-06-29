@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "bucket" {
 }
 
 module "bucket" {
-  source = "./module/bucket"
+  source = "./terraform"
   count  = length(variables.bucket_names)
 
   bucket_name = variables.bucket_names[count.index]
