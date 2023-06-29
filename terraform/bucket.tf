@@ -7,17 +7,17 @@ terraform {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = variables.bucket_names
+  bucket = var.bucket_names
   acl    = "private"
 
   tags = {
-    Name = variables.bucket_names
+    Name = var.bucket_names
   }
 }
 
 module "bucket" {
   source = "./terraform"
-  count  = length(variables.bucket_names)
+  count  = length(var.bucket_names)
 
-  bucket_name = variables.bucket_names[count.index]
+  bucket_name = var.bucket_names[count.index]
 }
