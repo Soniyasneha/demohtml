@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "bucket" {
 
 module "bucket" {
   source = "./module/bucket"
-  count  = length(var.bucket_names)
+  count  = length(variables.bucket_names)
 
-  bucket_name = var.bucket_names[count.index]
+  bucket_name = variables.bucket_names[count.index]
 }
