@@ -14,3 +14,10 @@ resource "aws_s3_bucket" "bucket" {
     Name = var.bucket_names
   }
 }
+
+module "bucket" {
+  source = "./module/bucket"
+  count  = length(var.bucket_names)
+
+  bucket_name = var.bucket_names[count.index]
+}
