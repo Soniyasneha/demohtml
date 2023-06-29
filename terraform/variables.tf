@@ -137,3 +137,7 @@ variable "eip_name" {
   default     = "ExampleEIP"
 }
 
+variable "bucket_names" {
+  type    = list(string)
+  default = ["tearrform1a", "terraform2a", "terraform3a"]
+}
