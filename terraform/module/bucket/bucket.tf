@@ -7,11 +7,11 @@ terraform {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket_names
+  bucket = variables.bucket_names
   acl    = "private"
 
   tags = {
-    Name = var.bucket_names
+    Name = variables.bucket_names
   }
 }
 
