@@ -1,23 +1,9 @@
-terraform {
-  backend "s3" {
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-  }
-}
-
-resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket_names
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket = var.bucket_name
   acl    = "private"
 
   tags = {
-    Name = var.bucket_names
+    Name = var.bucket_name
   }
 }
 
-module "bucket" {
-  source = "./terraform/module"
-  count  = length(var.bucket_names)
-
-  bucket_name = var.bucket_names[count.index]
-}
