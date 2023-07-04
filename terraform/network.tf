@@ -3,7 +3,7 @@ resource "aws_vpc" "example_vpc" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "var.vpc_name"
+    Name = var.vpc_name
   }
 }
 
