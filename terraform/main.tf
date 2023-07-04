@@ -17,13 +17,4 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-
-terraform {
-  backend "s3" {
-    bucket = "terraformlearnn"
-    key    = "devl/terraform.tfstate"
-    region = "us-east-1"
-  }
 }
-
-
