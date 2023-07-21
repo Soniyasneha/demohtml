@@ -1,14 +1,9 @@
-resource "aws_sagemaker_endpoint_configuration" "example" {
-  name = "example-endpoint-config"
+resource "aws_sagemaker_notebook_instance" "notebook" {
+  name          = "my-notebook-instance"
+  role_arn      = "arn:aws:iam::933400543978:role/sagemaker"  
+  instance_type = "ml.t2.medium"
 
-  production_variants {
-    model_name="mlpractise"
-    initial_instance_count = 1
-    instance_type = "ml.t2.medium"  # Replace this with your desired instance type
-    initial_variant_weight = 1
+  tags = {
+    Name = "sagemaker"
   }
-}
-resource "aws_sagemaker_endpoint" "example" {
-  name   = "example-endpoint"
-  endpoint_config_name = aws_sagemaker_endpoint_configuration.example.name
 }
