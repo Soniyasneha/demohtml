@@ -2,9 +2,9 @@ resource "aws_sagemaker_endpoint_configuration" "example" {
   name = "example-endpoint-config"
 
   production_variants {
-    variant_name  = "AllTraffic"
+    model_name="mlpractise"
     initial_instance_count = 1
-    instance_type = "ml.m4.xlarge"  # Replace this with your desired instance type
+    instance_type = "ml.t2.medium"  # Replace this with your desired instance type
     initial_variant_weight = 1
   }
 }
